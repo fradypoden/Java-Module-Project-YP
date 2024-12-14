@@ -9,7 +9,8 @@ public class Main {
 
         for (int i = 0; i < 3; i++) {
             System.out.println("Введите название машины №" + (i + 1));
-            String carName = scanner.nextLine();
+            String carName = scanner.next();
+            carName = carName + scanner.nextLine();
             System.out.println("Введите скорость для машины №" + (i + 1));
 
             while (true) {
@@ -27,6 +28,7 @@ public class Main {
                     }
                 } else {
                     System.out.println("Неправильная скорость");
+                    scanner.next();
                     scanner.nextLine();
                     System.out.println("Введите скорость для машины №" + (i + 1));
                 }
