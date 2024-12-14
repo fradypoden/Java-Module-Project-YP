@@ -16,7 +16,7 @@ public class Main {
             while (true) {
                 if (scanner.hasNextInt()) {
                     int speed = scanner.nextInt();
-                    if (speed > 0 & speed <= 250) {
+                    if (speed > 0 && speed <= 250) {
                         scanner.nextLine();
                         vehicleList.add(new Vehicle(carName, speed));
                         Race.calculation(vehicleList.get(i));
