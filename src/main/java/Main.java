@@ -5,58 +5,56 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<vehicle> vehicle = new ArrayList<>();
+        ArrayList<Vehicle> vehicleList = new ArrayList<>();
 
-        for (int i = 1; i < 4; i++) {
-            System.out.println("Введите название машины №" + i);
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Введите название машины №" + (i + 1));
             String carName = scanner.nextLine();
-            System.out.println("Введите скорость для машины №" + i);
+            System.out.println("Введите скорость для машины №" + (i + 1));
 
-            boolean check = true;
-            while (check) {
+            while (true) {
                 if (scanner.hasNextInt()) {
                     int speed = scanner.nextInt();
                     if (speed > 0 & speed <= 250) {
                         scanner.nextLine();
-                        vehicle.add(new vehicle(carName, speed));
-                        race.Calculation(carName, speed);
-                        check = false;
+                        vehicleList.add(new Vehicle(carName, speed));
+                        Race.calculation(vehicleList.get(i));
+                        break;
                     } else {
                         System.out.println("Неправильная скорость");
                         scanner.nextLine();
-                        System.out.println("Введите скорость для машины №" + i);
+                        System.out.println("Введите скорость для машины №" + (i + 1));
                     }
-
                 } else {
                     System.out.println("Неправильная скорость");
                     scanner.nextLine();
-                    System.out.println("Введите скорость для машины №" + i);
+                    System.out.println("Введите скорость для машины №" + (i + 1));
                 }
             }
         }
-        System.out.println("Самая быстрая машина: " + race.nameOfNewLeader);
+        System.out.println("Самая быстрая машина: " + Race.nameOfNewLeader);
     }
 }
 
-class vehicle {
+class Vehicle {
     String carName;
     int speed;
 
-    public vehicle(String carName, int speed) {
+    public Vehicle(String carName, int speed) {
         this.carName = carName;
         this.speed = speed;
     }
 }
 
-class race {
+class Race {
     static String nameOfNewLeader = "";
     static int distance = 0;
 
-    public static void Calculation(String carName, int speed) {
-        int distanceCalculation = speed * 24;
+    public static void calculation(Vehicle vehicle) {
+        int distanceCalculation = vehicle.speed * 24;
 
         if (distanceCalculation > distance) {
-            nameOfNewLeader = carName;
+            nameOfNewLeader = vehicle.carName;
             distance = distanceCalculation;
         }
     }
